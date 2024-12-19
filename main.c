@@ -14,7 +14,7 @@ int menu_Velocidade(){
 void Velocidade(){
     
     float v; int r, u;
-    char saida[5]=" ";
+    char saida[10]=" ";
     int menu_Velocidade();
     
     printf("Digite a velocidade (somente o valor numérico): \n");
@@ -54,7 +54,7 @@ void Velocidade(){
             switch(u){
                 case 1:
                     strcpy(saida, "m/s");
-                    v*=3.6;
+                    v /= 3.6;   
                     break;
                 case 3:
                     strcpy(saida, "mph");
@@ -66,15 +66,15 @@ void Velocidade(){
             }
             break;
         
-        default:
-            switch(u){
+        case 3: 
+            switch (u) {
                 case 1:
                     strcpy(saida, "m/s");
-                    v*=0.44704;
+                    v /= 2.23694;
                     break;
-                case 3:
+                case 2:
                     strcpy(saida, "Km/h");
-                    v*=1.60934;
+                    v /= 0.621371;
                     break;
                 default:
                     strcpy(saida, "mph");
@@ -86,13 +86,46 @@ void Velocidade(){
     printf("Sua Velocidade convertida é: %f%s", v, saida);
 }
 
+void converterTempo(){
+    int n;
+    float tempo;
+    while(1){
+    printf("Qual unidade de medida voce deseja converter?\n");
+    printf("1- Segundos\n2- Minutos\n3- Horas\n4- Encerar conversao de tempo\n");
+    scanf("%d", &n);
+    switch(n){
+       case 1:
+            printf("Informe o valor: ");
+            scanf("%f", &tempo);
+            printf("Segundos:%.2fs    Minutos:%.2fmin  Horas:%.2fh\n",tempo, tempo/60, (tempo/60)/60);
+        break;
+        case 2:
+            printf("Informe o valor: ");
+            scanf("%f", &tempo);
+            printf("Segundos:%.2fs    Minutos:%.2fmin  Horas:%.2fh\n",tempo*60, tempo, tempo/60);
+        break;
+        case 3:
+            printf("Informe o valor: ");
+            scanf("%f", &tempo);
+            printf("Segundos:%.2fs    Minutos:%.2fmin  Horas:%.2fh\n",tempo*60*60, tempo*60, tempo);
+        break;
+        case 4:
+            return;
+        break;
+        default:
+            printf("Comando invalido\n");
+    }
+    }
+    
+}
+
 int main() {
     int opcao;
 
     do {
 
         printf("\nMenu de opcoes:\n");
-        printf("1 - Opcao 1\n");
+        printf("1 - Converter unidades de tempo\n");
         printf("2 - Opcao 2\n");
         printf("3 - Opcao 3\n");
         printf("0 - Sair\n");
@@ -103,6 +136,7 @@ int main() {
         switch (opcao) {
             case 1:
                 printf("Voce escolheu a Opcao 1.\n");
+                converterTempo();
                 break;
 
             case 2:
