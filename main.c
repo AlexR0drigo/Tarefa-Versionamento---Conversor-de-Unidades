@@ -3,29 +3,38 @@
 #include <locale.h> 
 
 //Declaração de funções de conversão
+void converterUnidade();
+void converterMassa();
+float converte_litros_m3(float litros);
+float converte_mililitros_litros(float mililitros);
+float converte_galoes_litros(float galoes);
+void executar_conversoes_volume();
 int menu_Velocidade();
 void Velocidade();
-void converterTempo();
 void converterArea();
-void converterMassa();
-void converterUnidade();
+void converterTempo();
 
+// interface principal para seleção de conversão  
 int main() {
     int opcao;
 
     do {
-
-        printf("\nMenu de opcoes:\n");
+        // Menu com melhorias visuais
+        printf("\n================================================\n");
+        printf("       MENU DE OPÇÕES\n");
+        printf("================================================\n");
         printf("1 - Converter unidades de Comprimento\n");
         printf("2 - Converter unidades de Massa\n");
         printf("3 - Converter unidades de Volume\n");
         printf("4 - Converter unidades de Velocidade\n");
-        printf("5 - Converter Area\n");
+        printf("5 - Converter Área\n");
         printf("6 - Converter Tempo\n");
         printf("0 - Sair\n");
-        printf("Escolha uma opcao: \n");
+        printf("================================================\n");
+        printf("Escolha uma opção: ");
         scanf("%d", &opcao);
 
+        printf("\n");
 
         switch (opcao) {
             case 1:
@@ -37,7 +46,7 @@ int main() {
                 break;
 
             case 3:
-                
+                executar_conversoes_volume();
                 break;
 
             case 4:
@@ -45,7 +54,7 @@ int main() {
                 break;
                 
             case 5:
-                converterArea();       
+                converterArea();
                 break;
 
             case 6:
@@ -57,7 +66,7 @@ int main() {
                 break;
 
             default:
-                printf("Opcao invalida. Tente novamente.\n");
+                printf("\033[1;31mErro: Opção inválida. Tente novamente.\033[0m\n");  // Mensagem de erro em vermelho
                 break;
         }
     } while (opcao != 0); 
@@ -135,6 +144,90 @@ void converterUnidade() {
     }
 }
 
+// Função para realizar a conversão de massa
+void converterMassa() {
+    int n;
+    float massa;
+    while (1) {
+        printf("Qual unidade de medida voce deseja converter?\n");
+        printf("1 - Quilogramas\n2 - Gramas\n3 - Toneladas\n4 - Encerrar conversao de massa\n");
+        scanf("%d", &n);
+        switch (n) {
+            case 1:
+                printf("Informe o valor em quilogramas: ");
+                scanf("%f", &massa);
+                printf("Quilogramas: %.2fkg    Gramas: %.2fg    Toneladas: %.2ft\n", massa, massa * 1000, massa / 1000);
+                break;
+            case 2:
+                printf("Informe o valor em gramas: ");
+                scanf("%f", &massa);
+                printf("Quilogramas: %.2fkg    Gramas: %.2fg    Toneladas: %.2ft\n", massa / 1000, massa, massa / 1000000);
+                break;
+            case 3:
+                printf("Informe o valor em toneladas: ");
+                scanf("%f", &massa);
+                printf("Quilogramas: %.2fkg    Gramas: %.2fg    Toneladas: %.2ft\n", massa * 1000, massa * 1000000, massa);
+                break;
+            case 4:
+                return;
+            default:
+                printf("Comando invalido\n");
+        }
+    }
+}
+
+// Funções para realizar a conversão de volume
+void executar_conversoes_volume() {
+    int opcao;
+    float valor, resultado;
+
+    printf("\nEscolha a conversão que deseja realizar:");
+    printf("\n1 - Litros para Metros Cúbicos");
+    printf("\n2 - Mililitros para Litros");
+    printf("\n3 - Galões para Litros");
+    printf("\nDigite a opção: ");
+    scanf("%d", &opcao);
+
+    switch (opcao) {
+        case 1:
+            printf("\nDigite o valor em litros: ");
+            scanf("%f", &valor);
+            resultado = converte_litros_m3(valor);
+            printf("\n%.6f litros equivalem a %.6f metros cúbicos.\n", valor, resultado);
+            break;
+        case 2:
+            printf("\nDigite o valor em mililitros: ");
+            scanf("%f", &valor);
+            resultado = converte_mililitros_litros(valor);
+            printf("\n%.6f mililitros equivalem a %.6f litros.\n", valor, resultado);
+            break;
+        case 3:
+            printf("\nDigite o valor em galões: ");
+            scanf("%f", &valor);
+            resultado = converte_galoes_litros(valor);
+            printf("\n%.6f galões equivalem a %.6f litros.\n", valor, resultado);
+            break;
+        default:
+            printf("\nOpção inválida!\n");
+    }
+}
+
+float converte_litros_m3(float litros) {
+    // 1 litro = 0.001 metros cúbicos
+    return litros * 0.001;
+}
+
+float converte_mililitros_litros(float mililitros) {
+    // 1 mililitro = 0.001 litros
+    return mililitros * 0.001;
+}
+
+float converte_galoes_litros(float galoes) {
+    // 1 galão (EUA) = 3.78541 litros
+    return galoes * 3.78541;
+}
+
+// Funções para realizar a conversão de velocidade
 int menu_Velocidade(){
     int resp;
     printf("1 - Metros por segundo (m/s) \n");
@@ -220,6 +313,39 @@ void Velocidade(){
     printf("Sua Velocidade convertida é: %f%s", v, saida);
 }
 
+// Função para realizar a conversão de área
+void converterArea() {
+    float area;
+    int opcao_origem, opcao_destino;
+    
+    // Solicitar o valor da área
+    printf("Digite o valor da área: ");
+    scanf("%f", &area);
+
+    // Solicitar a unidade de origem
+    printf("Escolha a unidade de origem:\n");
+    printf("1 - Metro quadrado (m²)\n");
+    printf("2 - Centímetro quadrado (cm²)\n");
+    scanf("%d", &opcao_origem);
+
+    // Solicitar a unidade de destino
+    printf("Escolha a unidade de destino:\n");
+    printf("1 - Metro quadrado (m²)\n");
+    printf("2 - Centímetro quadrado (cm²)\n");
+    scanf("%d", &opcao_destino);
+
+    // Realizar as conversões
+    if (opcao_origem == 1 && opcao_destino == 2) {
+        area *= 10000; // 1 m² = 10.000 cm²
+        printf("Área convertida: %.2f cm²\n", area);
+    } else if (opcao_origem == 2 && opcao_destino == 1) {
+        area /= 10000; // 1 cm² = 0.0001 m²
+        printf("Área convertida: %.2f m²\n", area);
+    } else {
+        printf("As unidades de origem e destino são iguais. Nenhuma conversão necessária.\n");
+    }
+}
+
 // Função para realizar a conversão de tempo 
 void converterTempo(){
     int n;
@@ -254,65 +380,5 @@ void converterTempo(){
     
 }
 
-void converterArea() {
-    float area;
-    int opcao_origem, opcao_destino;
-    
-    // Solicitar o valor da área
-    printf("Digite o valor da área: ");
-    scanf("%f", &area);
 
-    // Solicitar a unidade de origem
-    printf("Escolha a unidade de origem:\n");
-    printf("1 - Metro quadrado (m²)\n");
-    printf("2 - Centímetro quadrado (cm²)\n");
-    scanf("%d", &opcao_origem);
 
-    // Solicitar a unidade de destino
-    printf("Escolha a unidade de destino:\n");
-    printf("1 - Metro quadrado (m²)\n");
-    printf("2 - Centímetro quadrado (cm²)\n");
-    scanf("%d", &opcao_destino);
-
-    // Realizar as conversões
-    if (opcao_origem == 1 && opcao_destino == 2) {
-        area *= 10000; // 1 m² = 10.000 cm²
-        printf("Área convertida: %.2f cm²\n", area);
-    } else if (opcao_origem == 2 && opcao_destino == 1) {
-        area /= 10000; // 1 cm² = 0.0001 m²
-        printf("Área convertida: %.2f m²\n", area);
-    } else {
-        printf("As unidades de origem e destino são iguais. Nenhuma conversão necessária.\n");
-    }
-}
-
-void converterMassa() {
-    int n;
-    float massa;
-    while (1) {
-        printf("Qual unidade de medida voce deseja converter?\n");
-        printf("1 - Quilogramas\n2 - Gramas\n3 - Toneladas\n4 - Encerrar conversao de massa\n");
-        scanf("%d", &n);
-        switch (n) {
-            case 1:
-                printf("Informe o valor em quilogramas: ");
-                scanf("%f", &massa);
-                printf("Quilogramas: %.2fkg    Gramas: %.2fg    Toneladas: %.2ft\n", massa, massa * 1000, massa / 1000);
-                break;
-            case 2:
-                printf("Informe o valor em gramas: ");
-                scanf("%f", &massa);
-                printf("Quilogramas: %.2fkg    Gramas: %.2fg    Toneladas: %.2ft\n", massa / 1000, massa, massa / 1000000);
-                break;
-            case 3:
-                printf("Informe o valor em toneladas: ");
-                scanf("%f", &massa);
-                printf("Quilogramas: %.2fkg    Gramas: %.2fg    Toneladas: %.2ft\n", massa * 1000, massa * 1000000, massa);
-                break;
-            case 4:
-                return;
-            default:
-                printf("Comando invalido\n");
-        }
-    }
-}
