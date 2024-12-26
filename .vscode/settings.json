@@ -1,12 +1,6 @@
 {
     "files.associations": {
-        "locale.h": "c",
-        "conversao_comprimento.h": "c",
-        "conversao_massa.h": "c",
-        "conversao_volume.h": "c",
-        "conversao_velocidade.h": "c",
-        "conversao_area.h": "c",
-        "conversao_tempo.h": "c"
+        "locale.h": "c"
     },
     "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
 }

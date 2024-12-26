@@ -15,17 +15,13 @@ O programa possui um menu interativo onde o usuário pode escolher qual tipo de 
 
 Cada uma dessas opções permite a conversão entre diferentes unidades dentro de cada categoria. O usuário escolhe a unidade de origem e a unidade de destino para realizar a conversão. A conversão é feita por meio de fórmulas predefinidas para cada tipo de unidade.
 
-## Como compilar e usar o programa
+## Como usar
 
-1. Para compilar o programa, execute o seguinte comando no terminal:
+1. Compile o código utilizando um compilador C
 
-    gcc -I./conversao_massa -I./conversao_comprimento -I./conversao_volume -I./conversao_velocidade -I./conversao_area -I./conversao_tempo main.c ./conversao_comprimento/*.c ./conversao_massa/*.c ./conversao_volume/*.c ./conversao_velocidade/*.c ./conversao_area/*.c ./conversao_tempo/*.c -o programa
+2. Execute o programa
 
-2. Após a execução do comando, o compilador gerará um arquivo executável chamado programa para executar, utilize o seguinte comando no terminal
-
-    ./programa
-
-3. O programa será iniciado e exibirá um menu de opções. Escolha a opção desejada digitando o número correspondente:
+3. O programa exibirá um menu de opções. Escolha a opção desejada digitando o número correspondente:
 - Por exemplo: para converter unidades de comprimento, digite '1' e pressione Enter.
 
 4. Dependendo da opção escolhida, o programa solicitará que você informe os valores necessários (por exemplo, unidades de origem e destino, ou o valor a ser convertido). Após inserir os dados, o programa realizará a conversão e exibirá o resultado.
